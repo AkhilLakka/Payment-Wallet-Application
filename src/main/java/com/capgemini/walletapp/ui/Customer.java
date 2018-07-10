@@ -93,33 +93,7 @@ public class Customer {
 		}
 	}
 	public static void m2() {
-		System.out.println("enter your username and password to login");
-		WalletService service = new WalletService();
-		WalletDetails details = new WalletDetails() ;
-		String uname = null;
-		String pass = null;
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		try {
-			 uname= br.readLine();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			 pass= br.readLine();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if(uname.equals(details.getUsername())&&pass.equals(details.getPassword()))
-		{
-			System.out.println("you have logged in successfully");
-			
-		}
-		else {
-			System.out.println("login failed");
-			
-		}
+	
 		
 	}
 

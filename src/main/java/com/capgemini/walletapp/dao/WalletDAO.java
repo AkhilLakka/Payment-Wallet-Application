@@ -1,6 +1,9 @@
 
 package com.capgemini.walletapp.dao;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -20,8 +23,9 @@ public class WalletDAO implements IWalletDAO {
 		return flag;
 	
 	}
-	public void login() {
+	public void login(String username,String password) {
 		
+		WalletDetails 
 		
 		
 	}
@@ -34,6 +38,13 @@ public class WalletDAO implements IWalletDAO {
 	}
 	public int withdraw(long accNum) {
 		System.out.println("enter amount to withdraw:");
+		BufferedReader br= new BufferedReader( new InputStreamReader(System.in));
+		try {
+			String amount = br.readLine();
+		} catch (IOException e) {
+		
+			e.printStackTrace();
+		}
 		
 		return 0;
 	}
