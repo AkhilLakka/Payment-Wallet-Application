@@ -25,7 +25,7 @@ public class WalletDAO implements IWalletDAO {
 	}
 	public void login(String username,String password) {
 		
-		WalletDetails 
+		
 		
 		
 	}
