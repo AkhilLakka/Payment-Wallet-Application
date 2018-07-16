@@ -1,39 +1,42 @@
 package com.capgemini.walletapp.bean;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WalletDetails {
-	private String firstName;
-	private String lastname;
+	
 	private long accNum;
 	private long tId;
-	
-	private String gender;
-	private String email;
-	private String mobileNum;
+	private double balance;	
 	private String username;
 	private String password;
-	private String amount;
-	private int age;
 	private Date Localdate;
 	
-	@Override
-	public String toString() {
-		return "WalletDetails [firstName=" + firstName + ", lastname=" + lastname + ", accNum=" + accNum + ", gender="
-				+ gender + ", email=" + email + ", mobileNum=" + mobileNum + ", username=" + username + ", password="
-				+ password + ", amount=" + amount + ", age=" + age + ", Localdate=" + Localdate + "]";
+	
+	
+	private CustomerDetails cust;
+	private List<String> trans = new ArrayList<String>();
+	
+
+
+	public List<String> getTrans() {
+		return trans;
 	}
-	public String getFirstName() {
-		return firstName;
+	public void setTrans(List<String> trans) {
+		this.trans = trans;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public CustomerDetails getCust() {
+		return cust;
 	}
-	public String getLastname() {
-		return lastname;
+	public void setCust(CustomerDetails cust) {
+		this.cust = cust;
 	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public double getBalance() {
+		return balance;
+	}
+	public void setBalance(double balance) {
+		this.balance = balance;
 	}
 	public long getAccNum() {
 		return accNum;
@@ -41,23 +44,11 @@ public class WalletDetails {
 	public void setAccNum(long accNum) {
 		this.accNum = accNum;
 	}
-	public String getGender() {
-		return gender;
+	public long gettId() {
+		return tId;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getMobileNum() {
-		return mobileNum;
-	}
-	public void setMobileNum(String mobileNum) {
-		this.mobileNum = mobileNum;
+	public void settId(long tId) {
+		this.tId = tId;
 	}
 	public String getUsername() {
 		return username;
@@ -71,28 +62,12 @@ public class WalletDetails {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getAmount() {
-		return amount;
-	}
-	public void setAmount(String amount) {
-		this.amount = amount;
-	}
-	public int getAge() {
-		return age;
-	}
-	public void setAge(int age) {
-		this.age = age;
-	}
+	
 	public Date getLocaldate() {
 		return Localdate;
 	}
 	public void setLocaldate(Date localdate) {
 		Localdate = localdate;
-	}public long gettId() {
-		return tId;
 	}
-	public void settId(long tId) {
-		this.tId = tId;
-	}
-
+	
 }
