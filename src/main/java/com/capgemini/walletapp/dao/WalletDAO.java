@@ -4,6 +4,7 @@ package com.capgemini.walletapp.dao;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -15,7 +16,8 @@ public class WalletDAO implements IWalletDAO {
 	int x = 0;
 	static double d;
 	WalletDetails details = new WalletDetails();
-	WalletDetails temp    = new WalletDetails();
+	static WalletDetails temp = new WalletDetails();
+	long tId;
 	boolean flag = false;
 
 	static List<WalletDetails> list = new ArrayList<WalletDetails>();
@@ -39,7 +41,7 @@ public class WalletDAO implements IWalletDAO {
 			String p = rec.getPassword();
 
 			if (username.equals(u) && password.equals(p)) {
-				temp= rec;
+				temp = rec;
 				return true;
 
 			} else {
@@ -53,20 +55,35 @@ public class WalletDAO implements IWalletDAO {
 
 	public int deposit(double balance) {
 
-		 temp.setBalance(temp.getBalance() + balance);
-		
+		temp.setBalance(temp.getBalance() + balance);
+
 		System.out.println("amount deposited ..present balance is" + temp.getBalance());
-		System.out.println(temp.getBalance());
+
 		return 1;
 	}
 
 	public int withdraw(double balance) {
-		if (balance < temp.getBalance()) {
-			double bal = temp.getBalance() - balance;
-			System.out.println("amount withdrawn ...present bal" + bal);
-			return 1;
-		} else {
-			System.out.println("insufficient balance");
+
+		Iterator<WalletDetails> it = list.iterator();
+		while (it.hasNext()) {
+			WalletDetails rec = it.next();
+			if (rec.getUsername().equals(temp.getUsername())) {
+
+				if (balance < temp.getBalance()) {
+					rec.setBalance(rec.getBalance() - balance);
+					System.out.println("amount withdrawn ...present bal" + rec.getBalance());
+					tId = ((long) (Math.random() * 1234 + 9999));
+					LocalDateTime d = LocalDateTime.now();
+					String s = "TransactionID" + Long.toString(tId) + "at" + d.toString()
+							+ "and transferred amount is :" + Double.toString(balance);
+
+					rec.getTrans().add(s);
+
+					return 1;
+				}
+			} else {
+				System.out.println("insufficient balance");
+			}
 		}
 		return 0;
 	}
@@ -74,41 +91,57 @@ public class WalletDAO implements IWalletDAO {
 	public int fundTransfer(long accNum, double balance) {
 
 		Iterator<WalletDetails> it = list.iterator();
+		Iterator<WalletDetails> it1 = list.iterator();
+
 		while (it.hasNext()) {
 			WalletDetails rec = it.next();
-			if (rec.getAccNum() == accNum) {
-				rec.setBalance(rec.getBalance() +balance);
-				temp.setBalance(temp.getBalance() - balance);
-				temp.settId((long) (Math.random() * 1234 + 9999));
-				System.out.println("Fundtransfer successful with ID" + temp.gettId());
-				System.out.println("Balance after transfering in" + temp.getCust().getFirstName() + "" + temp.getCust().getLastname() + "is"
-						+ temp.getBalance());
-				System.out.println("Balance after receiving amount in" + rec.getCust().getFirstName() + "" + rec.getCust().getLastname()
-						+ "is" + rec.getBalance());
+			if (rec.getUsername().equals(temp.getUsername())) {
+				while (it1.hasNext()) {
+					WalletDetails rec1 = it1.next();
 
-			} 
+					if (rec1.getAccNum() == accNum) {
+						rec1.setBalance(rec1.getBalance() + balance);
+						// temp.setBalance(temp.getBalance() - balance);
+						rec.setBalance(rec.getBalance() - balance);
+
+						tId = ((long) (Math.random() * 1234 + 9999));
+						LocalDateTime d = LocalDateTime.now();
+						String s = "TransactionID" + Long.toString(tId) + "at" + d.toString()
+								+ "and transferred amount is :" + Double.toString(balance);
+						rec.getTrans().add(s);
+						System.out.println("Fundtransfer successful with ID" + temp.gettId());
+						System.out.println("Balance after transfering in  :" + rec.getCust().getFirstName() + ""
+								+ rec.getCust().getLastname() + "is" + rec.getBalance());
+						System.out.println("Balance after receiving amount in   :" + rec1.getCust().getFirstName() + ""
+								+ rec1.getCust().getLastname() + "is" + rec1.getBalance());
+						return 1;
+
+					} else {
+						System.out.println("enter valid account");
+					}
+				}
+			} else {
+				System.out.println("Account number not found");
+			}
 		}
-		return 1;
+		return 0;
 	}
 
-	
 	public List printTrans() {
-		
+
 		Iterator<WalletDetails> it = list.iterator();
-		while(it.hasNext())
-		{
-			WalletDetails rec= it.next();
-			if(rec.getUsername().equals(temp.getUsername())) {
+		while (it.hasNext()) {
+			WalletDetails rec = it.next();
+			if (rec.getUsername().equals(temp.getUsername())) {
 				return rec.getTrans();
-			}			
-		}return null;	
+			}
+		}
+		return null;
 	}
 
-		
-	
 	public double showBal() {
-		
-		d=temp.getBalance();	
+
+		d = temp.getBalance();
 		return d;
 	}
 

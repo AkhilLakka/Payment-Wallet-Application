@@ -3,9 +3,12 @@ package com.capgemini.walletapp.ui;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.capgemini.walletapp.bean.CustomerDetails;
 import com.capgemini.walletapp.bean.WalletDetails;
+import com.capgemini.walletapp.exception.UserNotFound;
 import com.capgemini.walletapp.service.WalletDataValidate;
 import com.capgemini.walletapp.service.WalletService;
 
@@ -167,25 +170,35 @@ public class Customer {
 		}while(key!=6);
 		}
 		else {
-			System.out.println("login failed");
+			try {
+				throw new UserNotFound();
+			}catch(Exception e)
+			{
+				System.out.println("Login failed");
+				e.printStackTrace();
+			}
+		
 		}
 
 	}
 	public static void printTransaction() {
 		
+		WalletService service = new WalletService();
+		List<String> list= new ArrayList<String>();
+		
+		list =service.printTransaction();
+		System.out.println(list);
 	}
 
 
 	public static void showBal() {
-		WalletService service = new WalletService();
 		
-		System.out.println(service.showBal());
+		WalletService service = new WalletService();	
+		System.out.println(service.showBal()+"\n");
 
 	}
 
-	public static void exit() {
-
-	}
+	
 	public static void fundTransfer() {
 		WalletService service= new WalletService();
 		BufferedReader br= new BufferedReader(new InputStreamReader(System.in));

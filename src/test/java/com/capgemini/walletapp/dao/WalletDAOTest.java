@@ -32,22 +32,22 @@ public class WalletDAOTest {
 
 	@Test
 	public void testDeposit() {
-		Assert.assertNotSame(1, dao.deposit(details));
+		Assert.assertNotSame(1, dao.deposit(231231));
 	}
 
 	@Test
 	public void testShowBal() {
-		Assert.assertNotSame(2, dao.showBal(54213657));
+		Assert.assertNotSame(2, dao.showBal());
 	}
 
 	@Test
 	public void testFundTransfer() {
-		Assert.assertNotSame(2, dao.fundTransfer());
+		Assert.assertNotSame(2, dao.fundTransfer(21, 4450));
 	}
 
 	@Test
 	public void testPrintTransaction() {
-		Assert.assertNotSame(2, dao.printTransaction());
+		Assert.assertNotSame(2, dao.printTrans());
 	}
 
 }

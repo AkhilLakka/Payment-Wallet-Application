@@ -10,7 +10,7 @@ public class WalletService implements IWalletService {
 	WalletDAO dao = new WalletDAO();
 
 	public boolean createAccount(WalletDetails details) {
-		// TODO Auto-generated method stub
+		
 		return dao.createAccount(details);
 	}
 

@@ -17,12 +17,12 @@ public class WalletServiceTest {
 
 	@Test
 	public void testWithdraw() {
-		Assert.assertNotSame(1, service.withdraw());
+		Assert.assertNotSame(1, service.withdraw(12312));
 	}
 
 	@Test
 	public void testFundTransfer() {
-		Assert.assertNotSame(1, service.fundTransfer());
+		Assert.assertNotSame(1, service.fundTransfer(231, 231230));
 	}
 
 	@Test
@@ -32,12 +32,12 @@ public class WalletServiceTest {
 
 	@Test
 	public void testShowBal() {
-		Assert.assertNotSame(1, service.showBal(0));
+		Assert.assertNotSame(1, service.showBal());
 	}
 
 	@Test
 	public void testDeposit() {
-		Assert.assertNotSame(1, service.deposit(details));
+		Assert.assertNotSame(1, service.deposit(1213));
 	}
 
 }
