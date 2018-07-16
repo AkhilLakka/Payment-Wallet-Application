@@ -14,3 +14,4 @@ public interface IWalletService {
 	public List printTransaction();
 	public boolean login(String username,String password);
 }
+ 

@@ -18,7 +18,7 @@ public class WalletService implements IWalletService {
 		return dao.withdraw(balance);
 
 	}
-
+  
 	public int fundTransfer(long accNum, double balance) {
 
 		return dao.fundTransfer(accNum, balance);

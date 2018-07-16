@@ -32,7 +32,7 @@ public boolean validateMobNum(String mobileNum) {
 		return true;
 	else
 		return false;
-}
+} 
 
 public boolean validateGender(String gender)
 {

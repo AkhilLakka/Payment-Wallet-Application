@@ -86,7 +86,7 @@ public class WalletDAO implements IWalletDAO {
 				System.out.println("Balance after receiving amount in" + rec.getCust().getFirstName() + "" + rec.getCust().getLastname()
 						+ "is" + rec.getBalance());
 
-			}
+			} 
 		}
 		return 1;
 	}

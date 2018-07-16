@@ -14,3 +14,4 @@ public interface IWalletDAO {
 	public List printTrans();
 
 }
+ 

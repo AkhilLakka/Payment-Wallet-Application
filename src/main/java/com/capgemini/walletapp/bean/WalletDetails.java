@@ -18,7 +18,7 @@ public class WalletDetails {
 	private CustomerDetails cust;
 	private List<String> trans = new ArrayList<String>();
 	
-
+ 
 
 	public List<String> getTrans() {
 		return trans;
