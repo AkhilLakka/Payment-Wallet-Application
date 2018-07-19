@@ -25,7 +25,7 @@ public class Customer {
 
 			System.out.println("enter name");
 			String custName = br.readLine();
-			
+			 
 			System.out.println("enter email id");
 			String email = br.readLine();			
 			System.out.println("enter your mobile number");
